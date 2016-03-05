@@ -31,10 +31,10 @@ disabled_user = User.create({
   })
 
 [
-  {url: "https://producthunt.com", title: "Product Hunt - Best way to find new products and services"},
-  {url: "https://news.ycombinator.com/", title: "Hacker News - fantastic articles about tech"},
-  {url: "https://reddit.com", title: "Reddit - front page of the internet"},
-  {title: "Reddit - front page of the internet", content: "Here's a content post, which is different than a url post"},
+  {content: "I have never been to Cuba and would like to visit, would I like it?", title: "How is Cuba?"},
+  {content: "What kind of cars do everyday Cubans Drive?", title: "What cars do you drive?"},
+  {content: "I play basketball", title: "What do you do for fun?"},
+  {title: "I just ran out of titles", content: "Imagine a great title and text here."},
 ].each do |item|
   admin.items.create(item)
   user.items.create(item)

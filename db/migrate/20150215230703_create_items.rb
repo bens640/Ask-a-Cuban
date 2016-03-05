@@ -11,6 +11,7 @@ class CreateItems < ActiveRecord::Migration
       t.integer :downvotes_count, default: 0, null: false
       t.integer :score, default: 0, null: false
       t.integer :rank, default: 0, null: false
+      t.integer :updated_comments_count, default:0, null: false
 
       t.timestamps null: false
     end

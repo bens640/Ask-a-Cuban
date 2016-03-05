@@ -25,18 +25,19 @@ ActiveRecord::Schema.define(version: 20150405200823) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.string   "title",                           null: false
+    t.string   "title",                                  null: false
     t.string   "url"
     t.text     "content"
-    t.integer  "user_id",                         null: false
-    t.boolean  "disabled",        default: false, null: false
-    t.integer  "comments_count",  default: 0,     null: false
-    t.integer  "upvotes_count",   default: 0,     null: false
-    t.integer  "downvotes_count", default: 0,     null: false
-    t.integer  "score",           default: 0,     null: false
-    t.integer  "rank",            default: 0,     null: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.integer  "user_id",                                null: false
+    t.boolean  "disabled",               default: false, null: false
+    t.integer  "comments_count",         default: 0,     null: false
+    t.integer  "upvotes_count",          default: 0,     null: false
+    t.integer  "downvotes_count",        default: 0,     null: false
+    t.integer  "score",                  default: 0,     null: false
+    t.integer  "rank",                   default: 0,     null: false
+    t.integer  "updated_comments_count", default: 0,     null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
   add_index "items", ["disabled"], name: "index_items_on_disabled", using: :btree

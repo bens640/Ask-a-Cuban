@@ -21,6 +21,15 @@ class Item < ActiveRecord::Base
   scope :disabled, -> { where(disabled: true) }
   scope :newest, -> { order(score: :desc) }
 
+
+  def check_comments
+    if self.updated_comments_count > 0
+        self.content = "It worked!"
+      self.updated_comments_count = 0
+    end
+  end
+
+
   def as_json(options = {})
     super(include: {user: {only: :username}})
   end
