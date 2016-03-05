@@ -30,8 +30,8 @@ user = User.create({
   {content: "I play basketball", title: "What do you do for fun?"},
   {title: "I just ran out of titles", content: "Imagine a great title and text here."},
 ].each do |item|
-  admin.items.create(item)
-  user.items.create(item)
+  admin.items.create(item).save
+  user.items.create(item).save
 end
 
 [admin, user].each do |u|
