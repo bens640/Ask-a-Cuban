@@ -7,6 +7,7 @@ JSON:
 Login: https://ask-a-cuban.herokuapp.com/username="USERNAME"
 
     You are now logged in!
+Logout: https://ask-a-cuban.herokuapp.com/logout
 
 Items Index: https://ask-a-cuban.herokuapp.com/items.json
 
