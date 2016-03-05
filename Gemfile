@@ -9,6 +9,7 @@ gem 'sorcery', '0.9.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'validate_url'
+gem 'will_paginate', '~> 3.0.6'
 
 # This allows us to import bower packages
 source 'https://rails-assets.org' do
@@ -36,7 +37,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0' # https://github.com/rspec/rspec-rails
   gem 'rspec_api_documentation' # https://github.com/zipmark/rspec_api_documentation
 
-  gem 'will_paginate', '~> 3.0.6'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
