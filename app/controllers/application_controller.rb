@@ -29,8 +29,6 @@ class ApplicationController < ActionController::Base
 
     end
   end
-
-  def
   def vote_params
       {
           votable_id: params[:id],

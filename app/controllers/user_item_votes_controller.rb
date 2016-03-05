@@ -30,8 +30,8 @@ class UserItemVotesController < ApplicationController
 
   def vote_params
     {
-      votable_id: @item.id,
-      votable_type: @item.class.to_s
+      votable_id: params[:id],
+      votable_type: 'Item'
     }
   end
 end
