@@ -56,6 +56,9 @@ Create User: https://ask-a-cuban.herokuapp.com/user/new
             "password_confirmation": "12345",
             "about": "I like to take long walks on the beach"
         }
+Upvote: https://ask-a-cuban.herokuapp.com/items/id?upvote=true
+
+Downvote: https://ask-a-cuban.herokuapp.com/items/id?downvote=true
 
 
 

@@ -13,9 +13,19 @@ class ApplicationController < ActionController::Base
     if params[:username].present?
       u = User.find_or_create_by(username: params[:username])
       auto_login u
+      respond_to do |format|
+        format.json { render json: current_user}
+
+      end
     end
   end
 
+  def get_user_data
+    if params[:gd].present?
+
+    end
+
+    end
 
   def upvote_mobile
     if params[:upvote]
@@ -26,7 +36,6 @@ class ApplicationController < ActionController::Base
   def downvote_mobile
     if params[:downvote]
        Vote.where(user_id:current_user.id).where(votable_id:params[:id]).destroy_all
-
     end
   end
   def vote_params

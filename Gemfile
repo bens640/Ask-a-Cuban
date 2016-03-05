@@ -36,6 +36,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0' # https://github.com/rspec/rspec-rails
   gem 'rspec_api_documentation' # https://github.com/zipmark/rspec_api_documentation
 
+  gem 'will_paginate', '~> 3.0.6'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'

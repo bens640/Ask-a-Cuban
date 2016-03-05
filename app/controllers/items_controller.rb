@@ -10,20 +10,23 @@ class ItemsController < ApplicationController
     @items = Item.order(order).includes(:user)
     @votes = @items.includes(:votes).each_with_object({}) do |item, object|
       object[item.id] = item.votes.map(&:user_id)
+    @pag_items = @items.paginate(:page => params[:page], :per_page => 10)
 
     end
     respond_to do |format|
       format.html
       format.json { render json: @items}
-      format.apre { render json: @items}
+      format.apre { render json: @pag_items}
     end
   end
 
   def show
     @comments = @item.comments.includes(:user).order(created_at: :asc)
+    @pag_comments = @comments.paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
       format.html
       format.json { render json: @comments}
+      format.apre { render json: @pag_comments}
     end
   end
 
