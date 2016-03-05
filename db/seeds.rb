@@ -22,13 +22,7 @@ user = User.create({
     about: "About the Basic user",
   })
 
-disabled_user = User.create({
-    username: "disabled_user",
-    password: "password",
-    password_confirmation: "password",
-    about: "About the disabled user",
-    disabled: true
-  })
+
 
 [
   {content: "I have never been to Cuba and would like to visit, would I like it?", title: "How is Cuba?"},
@@ -38,7 +32,6 @@ disabled_user = User.create({
 ].each do |item|
   admin.items.create(item)
   user.items.create(item)
-  disabled_user.items.create(item)
 end
 
 [admin, user, disabled_user].each do |u|
