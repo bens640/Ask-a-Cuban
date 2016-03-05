@@ -3,17 +3,27 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show]
   before_action :set_user_item, only: [:edit, :update, :toggle]
 
+
   def index
     order = params[:newest] ? {created_at: :desc} : {rank: :desc}
 
     @items = Item.order(order).includes(:user)
     @votes = @items.includes(:votes).each_with_object({}) do |item, object|
       object[item.id] = item.votes.map(&:user_id)
+
+    end
+    respond_to do |format|
+      format.html
+      format.json { render json: @items}
     end
   end
 
   def show
     @comments = @item.comments.includes(:user).order(created_at: :asc)
+    respond_to do |format|
+      format.html
+      format.json { render json: @comments}
+    end
   end
 
   def new

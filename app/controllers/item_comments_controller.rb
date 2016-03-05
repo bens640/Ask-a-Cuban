@@ -3,6 +3,10 @@ class ItemCommentsController < ApplicationController
 
   def index
     @comments = @item.comments.order(created_at: :asc)
+    respond_to do |format|
+      format.html
+      format.json { render json: @comments}
+    end
   end
 
   def create

@@ -1,9 +1,7 @@
-ruby '2.1.5'
 source 'https://rubygems.org'
-
+gem 'pg'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
-gem 'pg'
 gem 'rails', '4.2.0'
 gem 'rails_12factor', group: :production
 gem 'simple_form'
@@ -37,7 +35,7 @@ group :development, :test do
   gem 'pry'
   gem 'rspec-rails', '~> 3.0' # https://github.com/rspec/rspec-rails
   gem 'rspec_api_documentation' # https://github.com/zipmark/rspec_api_documentation
-  gem 'shoulda-matchers'
+
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
