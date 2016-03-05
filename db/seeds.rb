@@ -34,7 +34,7 @@ user = User.create({
   user.items.create(item)
 end
 
-[admin, user,].each do |u|
+[admin, user].each do |u|
   puts "created user: #{u.attributes.inspect}"
 end
 
