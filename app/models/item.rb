@@ -20,4 +20,10 @@ class Item < ActiveRecord::Base
   scope :active, -> { where(disabled: false) }
   scope :disabled, -> { where(disabled: true) }
   scope :newest, -> { order(score: :desc) }
+
+  def as_json(options = {})
+    super(include: {user: {only: :username}})
+  end
+
+
 end

@@ -18,7 +18,10 @@ class ItemsController < ApplicationController
       format.json { render json: @items}
       format.apre { render json: @pag_items}
     end
+
   end
+
+
 
   def show
     @comments = @item.comments.includes(:user).order(created_at: :asc)
