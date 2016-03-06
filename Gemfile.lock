@@ -182,7 +182,7 @@ GEM
       bcrypt (~> 3.1)
       oauth (~> 0.4, >= 0.4.4)
       oauth2 (>= 0.8.0)
-    spring (1.3.2)
+    spring (1.6.3)
     sprockets (3.3.3)
       rack (~> 1.0)
     sprockets-rails (2.3.2)
@@ -228,7 +228,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   simple_form
   sorcery (= 0.9.0)
-  spring
+  spring (~> 1.6.3)
   uglifier (>= 1.3.0)
   validate_url
   web-console (~> 2.0)

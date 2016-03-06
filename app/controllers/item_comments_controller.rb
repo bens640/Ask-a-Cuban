@@ -2,12 +2,17 @@ class ItemCommentsController < ApplicationController
   before_action :set_item
 
   def index
-    @comments = @item.comments.order(created_at: :asc)
+
     respond_to do |format|
-      format.html
-      format.json { render json: @comments}
+      format.html {@comments = @item.comment}
+      format.json {
+        render json: @item.to_json(
+                   include: :comments
+               )}
     end
   end
+
+
 
   def create
     @comment = current_user.item_comments.build(comment_params)
