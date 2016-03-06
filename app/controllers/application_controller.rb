@@ -13,10 +13,8 @@ class ApplicationController < ActionController::Base
     if params[:username].present?
       u = User.find_or_create_by(username: params[:username])
       auto_login u
-      respond_to do |format|
-        format.json { render json: current_user}
 
-      end
+
     end
   end
 
