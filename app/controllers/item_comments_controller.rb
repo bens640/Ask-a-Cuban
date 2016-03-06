@@ -4,14 +4,19 @@ class ItemCommentsController < ApplicationController
   def index
 
     respond_to do |format|
-      format.html {@comments = @item.comment}
-      format.json {
-        render json: @item.to_json(
+      format.html {@comments = @item.comments}
+      format.json  {
+        render json: @item.as_json(
                    include: :comments
-               )}
+               )
+      }
+      format.apre  {
+        render json: @item.as_json(
+                   include: :comments
+               )
+      }
     end
   end
-
 
 
   def create
