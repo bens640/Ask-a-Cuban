@@ -24,10 +24,10 @@ class ItemsController < ApplicationController
 
 
   def show
-    @changed_items= []
+    # @changed_items= []
     @comments = @item.comments.includes(:user).order(created_at: :asc)
     @pag_comments = @comments.paginate(:page => params[:page], :per_page => 10)
-    @item.check_comments @changed_items, @comments
+    # @item.check_comments @changed_items, @comments
     respond_to do |format|
       format.html
       format.json { render json: @comments}
