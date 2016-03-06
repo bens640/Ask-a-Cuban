@@ -4,7 +4,6 @@ class ItemsController < ApplicationController
   before_action :set_user_item, only: [:edit, :update, :toggle]
   skip_before_filter  :verify_authenticity_token, if: :json_request?
 
-
   def index
     order = params[:newest] ? {created_at: :desc} : {rank: :desc}
 
@@ -15,8 +14,8 @@ class ItemsController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.json { render json: @items}
-      format.apre { render json: @pag_items}
+
+      format.json { render json: @pag_items}
     end
 
   end
@@ -30,8 +29,8 @@ class ItemsController < ApplicationController
     # @item.check_comments @changed_items, @comments
     respond_to do |format|
       format.html
-      format.json { render json: @comments}
-      format.apre { render json: @changed_items}
+
+      format.json { render json: @pag_comments}
     end
 
   end
@@ -45,17 +44,20 @@ class ItemsController < ApplicationController
 
   def create
     @item = current_user.items.build(item_params)
-
-    if @item.save
-      redirect_to @item, notice: 'Item was successfully created.'
-    else
-      render :new
+    respond_to do |format|
+      if @item.save
+      format.html {redirect_to @item, notice:'Item was successfully created.'}
+      format.json {head :ok}
+      else
+        render :new
+      end
     end
   end
 
   def update
     if @item.update(item_params)
       redirect_to @item, notice: 'Item was successfully updated.'
+
     else
       render :edit
     end
@@ -87,9 +89,12 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:title, :url, :content)
   end
 
+
+
   protected
   def json_request?
-    request.format.json?
+
+    request.format.to_s.include? 'json'
 
   end
 

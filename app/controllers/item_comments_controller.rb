@@ -10,11 +10,7 @@ class ItemCommentsController < ApplicationController
                    include: :comments
                )
       }
-      format.apre  {
-        render json: @item.as_json(
-                   include: :comments
-               )
-      }
+
     end
   end
 
@@ -23,8 +19,7 @@ class ItemCommentsController < ApplicationController
     @comment = current_user.item_comments.build(comment_params)
     if @comment.save
       redirect_back_or_to item_path(@item), notice: "Success."
-      # @item.updated_comments_count += 1
-      # @item.save
+
     else
       redirect_back_or_to item_path(@item), notice: @comment.errors.full_messages.join(". ")
     end
