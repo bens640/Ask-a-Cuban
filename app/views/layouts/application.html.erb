@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= "Ask a Cuban" %><%= seo_title_text %></title>
+  <title><%= "#{yield(:title)} " %><%= seo_title_text %></title>
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
@@ -9,7 +9,6 @@
 <body style="padding-top:70px">
 <%= render 'components/top_navigation' %>
 <%= yield :headerwrap %>
-<%= debug(params) if Rails.env.development?%>
 
 <div id="service">
   <div class="container">
@@ -22,5 +21,5 @@
 <%= render 'components/google_analytics' %>
 <%= yield :javascripts %>
 </body>
-<%= debug(params) if Rails.env.development?%>
+
 </html>

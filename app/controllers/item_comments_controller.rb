@@ -1,5 +1,6 @@
 class ItemCommentsController < ApplicationController
   before_action :set_item
+  skip_before_filter  :verify_authenticity_token, if: :json_request?
 
   def index
 
@@ -17,11 +18,13 @@ class ItemCommentsController < ApplicationController
 
   def create
     @comment = current_user.item_comments.build(comment_params)
+    respond_to do |format|
     if @comment.save
-      redirect_back_or_to item_path(@item), notice: "Success."
-
+      format.html {redirect_back_or_to item_path(@item), notice: "Success."}
+      format.json {head :ok}
     else
       redirect_back_or_to item_path(@item), notice: @comment.errors.full_messages.join(". ")
+    end
     end
   end
 
@@ -40,5 +43,11 @@ class ItemCommentsController < ApplicationController
 
   def comment_params
     params.require(:item_comment).permit(:content).merge({item_id: params[:item_id]})
+  end
+  protected
+  def json_request?
+
+    request.format.to_s.include? 'json'
+
   end
 end

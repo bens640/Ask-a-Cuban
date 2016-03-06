@@ -10,7 +10,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'validate_url'
 gem 'will_paginate', '~> 3.0.6'
-
 # This allows us to import bower packages
 source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap-material-design'
