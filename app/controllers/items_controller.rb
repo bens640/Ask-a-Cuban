@@ -84,7 +84,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:title, :content)
+    params.require(:item).permit(:title, :url, :content)
   end
 
   protected
