@@ -22,9 +22,11 @@ class Item < ActiveRecord::Base
   scope :newest, -> { order(score: :desc) }
 
 
-  def check_comments
+  def check_comments(arr, comments)
     if self.updated_comments_count > 0
-        self.content = "It worked!"
+         arr << comments.first(self.updated_comments_count)
+      save!
+    elsif self.updated_comments_count == 0
       self.updated_comments_count = 0
     end
   end

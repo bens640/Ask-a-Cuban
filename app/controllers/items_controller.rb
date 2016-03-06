@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :require_login, only: [:new, :create, :edit, :update, :toggle]
   before_action :set_item, only: [:show]
   before_action :set_user_item, only: [:edit, :update, :toggle]
+  skip_before_filter  :verify_authenticity_token, if: :json_request?
 
 
   def index
@@ -11,7 +12,6 @@ class ItemsController < ApplicationController
     @votes = @items.includes(:votes).each_with_object({}) do |item, object|
       object[item.id] = item.votes.map(&:user_id)
     @pag_items = @items.paginate(:page => params[:page], :per_page => 10)
-
     end
     respond_to do |format|
       format.html
@@ -24,13 +24,16 @@ class ItemsController < ApplicationController
 
 
   def show
+    @changed_items= []
     @comments = @item.comments.includes(:user).order(created_at: :asc)
     @pag_comments = @comments.paginate(:page => params[:page], :per_page => 10)
+    @item.check_comments @changed_items, @comments
     respond_to do |format|
       format.html
       format.json { render json: @comments}
-      format.apre { render json: @pag_comments}
+      format.apre { render json: @changed_items}
     end
+
   end
 
   def new
@@ -83,4 +86,11 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:title, :url, :content)
   end
+
+  protected
+  def json_request?
+    request.format.json?
+
+  end
+
 end
