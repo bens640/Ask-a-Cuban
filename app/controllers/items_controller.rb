@@ -6,7 +6,6 @@ class ItemsController < ApplicationController
 
   def index
     order = params[:newest] ? {created_at: :desc} : {rank: :desc}
-
     @items = Item.order(order).includes(:user)
     @votes = @items.includes(:votes).each_with_object({}) do |item, object|
       object[item.id] = item.votes.map(&:user_id)
@@ -14,13 +13,10 @@ class ItemsController < ApplicationController
     end
     respond_to do |format|
       format.html
-
       format.json { render json: @pag_items}
     end
 
   end
-
-
 
   def show
     # @changed_items= []
@@ -29,7 +25,6 @@ class ItemsController < ApplicationController
     # @item.check_comments @changed_items, @comments
     respond_to do |format|
       format.html
-
       format.json { render json: @pag_comments}
     end
 
@@ -89,13 +84,9 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:title, :url, :content)
   end
 
-
-
   protected
   def json_request?
-
     request.format.to_s.include? 'json'
-
   end
 
 end

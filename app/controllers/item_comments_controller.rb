@@ -3,18 +3,14 @@ class ItemCommentsController < ApplicationController
   skip_before_filter  :verify_authenticity_token, if: :json_request?
 
   def index
-
     respond_to do |format|
       format.html {@comments = @item.comments}
       format.json  {
         render json: @item.as_json(
-                   include: :comments
-               )
+                   include: :comments)
       }
-
     end
   end
-
 
   def create
     @comment = current_user.item_comments.build(comment_params)

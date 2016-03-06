@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
     redirect_to login_path, alert: "Please login first"
   end
 
+  # Lets mobile app use params to pass in username
   def mobile_login
     if params[:username].present?
       u = User.find_or_create_by(username: params[:username])
@@ -17,14 +18,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
-
+  # Used by API to upvote an article by adding upvote=true to URL
   def upvote_mobile
     if params[:upvote]
         current_user.votes.build(vote_params).save
     end
   end
-
+  # Used by API to downvote an article by adding downvote=true to URL
   def downvote_mobile
     if params[:downvote]
        Vote.where(user_id:current_user.id).where(votable_id:params[:id]).destroy_all
